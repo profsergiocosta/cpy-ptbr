@@ -123,62 +123,64 @@ Enquanto o computador pode estar tão feliz com isso, nenhum humano sensato pref
 
 (Existem algumas exceções à regra de ignorar o espaço em branco: É ocasionalmente significativo separar palavras e símbolos. O fragmento `intmain` é diferente do fragmento ` int main` ; da mesma forma, o fragmento `a++ + 1` é diferente do fragmento `a+ + +1`.)
 
-### 1.4. The `printf()` function
+### 1.4. A função `printf ()
 
-As we work toward writing useful C programs, one important ingredient is displaying results for the user to see, which you would accomplish using `print` in Python. In C, you use `printf()` instead. This is actually a function, one of the most useful among C's library of language-defined functions.
+À medida que trabalhamos para escrever programas C úteis, um ingrediente importante é exibir resultados para o usuário ver, o que você realizaria usando `print` em Python. Em C, você usa `printf ()`. Esta é, na verdade, uma função, uma das mais úteis na biblioteca padrão da linguagem. 
 
-The way the parameters to `printf()` work is a bit complicated but also quite convenient: The first parameter is a string specifying the format of what to print, and the following parameters indicate the values to print. The easiest way to understand this is to look at an example.
+A maneira como os parâmetros para `printf ()` funcionam é um pouco complicada, mas também bastante conveniente: O primeiro parâmetro é uma string especificando o formato do que imprimir, e os seguintes parâmetros indicam os valores a serem impressos. A maneira mais fácil de entender isso é olhar para um exemplo.
 
 ```c
 `printf("# solns: %d\n", num_sol);`
 ```
 
-This line says to print using “# solns: %d\n” as the format string. The `printf()` function goes through this format string, printing the characters “# solns: ” before getting to the percent character '%'. The percent character is special to `printf()`: It says to print a value specified in a subsequent parameter. In this case, a lower-case _d_ follows the percent character, indicating to display the parameter as an `int` in decimal form. (The _d_ stands for decimal.) So when `printf()` reaches “%d”, it looks at the value of the following parameter (let's imagine `num_sol` is 2 in this example) and displays that value instead. It then continues through the format string, in this case displaying a newline character. Overall, then, the user sees the following line of output:
+Esta linha diz para imprimir usando “# solns:% d \ n” como a string de formatação. A função `printf ()` passa por esta string de formato, imprimindo os caracteres “# solns:” antes de chegar ao caractere de porcentagem '%'. O caractere de porcentagem é especial para `printf ()`: Diz para imprimir um valor especificado em um parâmetro subseqüente. Nesse caso, um _d_ minúsculo segue o caractere de porcentagem, indicando para exibir o parâmetro como um `int` no formato decimal. (O _d_ significa decimal.) Então, quando `printf ()` alcança “% d”, ele olha o valor do parâmetro a seguir (vamos imaginar `num_sol` é 2 neste exemplo) e exibe esse valor. Em seguida, continua através da string de formatação, neste caso, exibindo um caractere de quebra de linha. No geral, o usuário vê a seguinte linha de saída:
 
 > \# solns: 2
 
-Like Python, C allows you to include escape characters in a string using a backslash. The “\n” sequence represents the newline character — that is, the character that represents a line break. Similarly, “\t” represents the tab character, “\"” represents the double-quote character, and “\\” represents the backslash character. These escape characters are part of C syntax, not part of the `printf()` function. (That is, the string the `printf()` function receives actually contains a newline, not a backslash followed by an _n_. Thus, the nature of the backslash is fundamentally different from the percent character, which `printf()` would see and interpret at run-time.)
+Como o Python, o C permite incluir caracteres de escape em uma string usando uma barra invertida. A sequência “\n” representa o caractere de quebra de linha. Da mesma forma, "\t" representa o caractere de tabulação, "\" "representa o caractere de aspas duplas e" \\ "representa o caractere de barra invertida. Esses caracteres de escape fazem parte da sintaxe C, não fazem parte da função ` printf () ` (isto é, a string que a função `printf ()` recebe na verdade contém uma nova linha, não uma barra invertida seguida por um _n_. Assim, a natureza da barra invertida é fundamentalmente diferente do caractere percentual, que printf () veria e interpretaria em tempo de execução.) 
 
-Let's look at another example.
+Vamos ver outro exemplo.
 
 ```c
 printf("# solns: %d", num_sol);  
 printf("solns: %f, %f", sol0, sol1);`
 ```
 
-Let's assume `num_sol` holds 2, `sol0` holds 4, and `sol1` holds 1. When the computer reaches these two `printf()` function calls, it first executes the first line, which displays “\# solns: 2”, and then the second, which displays “solns: 4.0, 1.0”, as illustrated below.
+Vamos supor que `num_sol` contém 2, `sol0` com 4 e `sol1` com 1. Quando o computador alcança essas duas chamadas de função `printf ()`, ele primeiro executa a primeira linha, que exibe “\ # solns: 2 ”, E depois o segundo, que mostra “ solns: 4000000, 1.000000 ”, conforme ilustrado abaixo.
 
-> \# solns: 2solns: 4.0, 1.0
+> \# solns: 2solns: 4.000000, 1.000000
 
-Note that `printf()` displays only what it is told, without adding any extra spaces or newlines; if we want a newline to be inserted between the two pieces of output, we would need to include “\n” at the end of the first format string.
+Note que `printf ()` exibe apenas o que é dito, sem adicionar espaços extras ou novas linhas; Se quisermos que uma nova linha seja inserida entre as duas saídas, precisaríamos incluir “\n” no final da primeira string de formatação.
 
-The second call to `printf()` in this example illustrates how the function can print multiple parameter values. In fact, there's really no reason we couldn't have combined the two calls to `printf()` into one in this case.
+
+A segunda chamada para `printf ()` neste exemplo ilustra como a função pode imprimir múltiplos valores de parâmetro. Na verdade, não há realmente nenhuma razão para não termos combinado as duas chamadas para `printf ()` em uma neste caso.
 
 ```c
 `printf("# solns: %dsolns: %f, %f",  
      num_sol, sol0, sol1);`
 ```
 
-By the way, the `printf()` function displays “4.0” rather than simply “4” because the format string uses “%f”, which says to interpret the parameters as floating-point numbers. If you want it to display just “4”, you might be tempted to use “%d” instead. But that wouldn't work, because `printf()` would interpret the binary representation used for a floating-point number as a binary representation for an integer, and these types are stored in completely different ways. On my computer, replacing each “%f” with “%d” leads to the following output:
+A propósito, a função `printf ()` exibe “4.00000” ao invés de simplesmente “4” porque a string de formato usa “%f”, que diz interpretar os parâmetros como números de ponto flutuante. Se você quiser exibir apenas "4", você pode se sentir tentado a usar "%d". Mas isso não funcionaria, porque `printf ()` interpretaria a representação binária usada para um número de ponto flutuante como uma representação binária para um inteiro, e esses tipos são armazenados de maneiras completamente diferentes. No meu computador, substituir cada “%f” por “%d” leva à seguinte saída:
 
 > `#** solns: 2solns: 0, 1074790400`
 
-There's a variety of characters that can follow the percent character in the formatting string.
+Há uma variedade de caracteres que podem seguir o caractere de porcentagem na string de formatação.
 
-*   %d, as we've already seen, says to print an `int` value in decimal form.
-*   %x says to print an `int` value in hexadecimal form.
-*   %f says to print a `double` value in decimal-point form.
-*   %e says to print a `double` value in scientific notation (for example, 3.000000e8).
-*   %c says to print a `char` value.
-*   %s says to print a string. There's no variable type for representing a string, but C does support some string facilities using arrays of characters. We'll defer discussion of these facilities to later, after we discuss pointers, as strings involve some more complex concepts that we haven't seen yet.
+* `%d`, como já vimos, diz para imprimir um valor `int` na forma decimal.
+* `%x` diz para imprimir um valor `int` em formato hexadecimal.
+* `%f` diz para imprimir um valor `double` em forma de ponto decimal.
+* `%e` diz para imprimir um valor `double` em notação científica (por exemplo, 3.000000e8).
+* `%c` diz para imprimir um valor `char`.
+* `%s` diz para imprimir uma string. Não há nenhum tipo de variável para representar uma string, mas C suporta alguns recursos de string usando matrizes de caracteres. Adiaremos a discussão desses recursos para mais tarde, depois de discutirmos os indicadores, já que as sequências envolvem alguns conceitos mais complexos que ainda não vimos.
 
-You can also include a number between the percent character and the format descriptor as in “%10d”, which tells `printf()` to right-justify a decimal integer over ten columns.
+Você também pode incluir um número entre o caractere de porcentagem e o descritor de formato como em “%10d”, que diz `printf ()` para justificar à direita um número inteiro decimal em dez colunas.
 
-### 1.5. Functions
+### 1.5. Funções
 
-Unlike Python, all C code must be nested within functions, and functions cannot be nested within each other. Thus, a C program's overall structure is typically very straightforward: It is a list of function definitions, one after another, each containing a list of statements to be executed when the function is called.
+Ao contrário do Python, todo o código C deve estar aninhado dentro das funções e as funções usualmente não são aninhadas umas nas outras. Assim, a estrutura geral de um programa em C é tipicamente muito direta: É uma lista de definições de funções, uma após a outra, cada uma contendo uma lista de instruções a serem executadas quando a função é chamada.
 
-Here's a simple example of a function definition:
+Aqui está um exemplo simples de uma definição de função:
+
 
 ```c
 double expon(double b, int e) {
@@ -190,13 +192,15 @@ double expon(double b, int e) {
 }
 ```
 
-A C function is defined by naming the return type (`double` here, since the function produces a floating-point result), followed by the function name (`expon`), followed by a set of parentheses listing the parameters. Each parameter is described by including the type of the parameter and the parameter name. Following the parameter list in parentheses is a set of braces, in which you nest the body of the function.
+Uma função C é definida nomeando o tipo de retorno (`double` aqui, já que a função produz um resultado de ponto flutuante), seguido pelo nome da função (`expon`), seguido por um conjunto de parênteses listando os parâmetros. Cada parâmetro é descrito incluindo o tipo do parâmetro e o nome do parâmetro. A seguir, a lista de parâmetros entre parênteses é um conjunto de chaves, no qual você aninha o corpo da função. 
 
-If you have a function that does not have any useful return value, then you'd use `void` as the return type.
+Se você tem uma função que não possui nenhum valor de retorno útil, você usaria 'void` como o tipo de retorno. 
 
-Programs have one special function named `main`, whose return type is an integer. This function is the “starting point” for the program: The computer essentially calls the program's `main` function when it wants to execute the program. The integer return value is largely meaningless; we'll always return 0 rather than worrying about how the return value might be used.
+Programas possuem uma função especial chamada `main`, cujo tipo de retorno é um inteiro. Esta função é o “ponto de partida” para o programa: O computador essencialmente chama a função `main` do programa quando quer executar o programa. O valor de retorno inteiro é aparentemente sem sentido; sempre retornaremos 0 em vez de nos preocuparmos sobre como o valor de retorno pode ser usado. 
 
-We are now in a position to present a complete C program, along with its Python equivalent.
+> Observação: este resultado é útil ao sistema operacional, pois se um programa retorna 0, o sistema operacional sabe que ele executou sem erros. 
+ 
+Estamos agora em posição de apresentar um programa C completo, juntamente com seu equivalente em Python.
 
 ```c
 int gcd(int a, int b) {
@@ -224,4 +228,4 @@ def gcd(a, b):
 print("GCD: " + str(gcd(24, 40)))
 ```
 
-As you can see, the C program consists of two function definitions. In contrast to the Python program, where the `print` line exists outside any function definitions, the C program requires `printf()` to be in the program's `main` function, since this is where we put all top-level code that is to complete when the program is executed.)
+Como você pode ver, o programa C consiste em duas definições de função. Em contraste com o programa Python, onde a linha `print` existe fora de qualquer definição de função, o programa C requer que `printf()` esteja na função `main` do programa, já que é aqui que colocamos todo o código de nível superior é concluir quando o programa é executado.)
