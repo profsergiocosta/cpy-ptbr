@@ -1,28 +1,25 @@
-2\. Statement-level constructs
-------------------------------
+## 1. Expressões e comandos
 
-Now that we've seen how to build a complete program, let's learn the universe of what we can do inside a C function by running through C's statement-level constructs.
+Agora que vimos como construir um programa completo, vamos aprender o universo do que podemos fazer dentro de uma função C, executando através de diferentes tipos de comandos.
 
-### 2.1. Operators
+### 2.1. Operadores
 
-An **operator** is something that we can use in arithmetic expressions, like a plus sign '+' or an equality test '\=='. C's operators will look familiar since Python's designer Guido van Rossum chose to start from C's list of operators; but there are some significant differences.
+Um ** operador ** é algo que podemos usar em expressões aritméticas, como um sinal de mais '+' ou um teste de igualdade '\ =='. Os operadores da linguagem C parecerão familiares, pois o designer da Python, Guido van Rossum, utilizou como referência esses operadores; mas existem algumas diferenças significativas.
 
-> **Figure 3.** Major operators in C and Python
-> 
+ 
 > **C operator precedence**
 > 
-> **Python operator precedence**
-> 
 > `++ --` (postfix)  
-> `+ - !` (unary)  
+> `+ - !` (unário)  
 > `* / %`  
-> `+ -` (binary)  
+> `+ -` (binário)  
 > `< > <= >=`  
 > `== !=`  
 > `&&`  
 > `||`  
 > `= += -= *= /= %=`
-> 
+
+> **Python operator precedence**
 > `**`  
 > `+ -` (unary)  
 > `* / % //`  
@@ -32,22 +29,23 @@ An **operator** is something that we can use in arithmetic expressions, like a p
 > `**and**`  
 > `**or**`
 
-Some important distinctions:
 
-*   C does not have an exponentiation operator like Python's `**` operator. For exponentiation in C, you'd want to use the library function `pow()`. For example, `pow(1.1, 2.0)` computes 1.1².
-    
-*   C uses symbols rather than words for the Boolean operations AND (`&&`), OR (`||`), and NOT (`!`).
-    
-*   The precedence level of NOT (the `!` operator) is very high in C. This is almost never desired, so you end up needing parentheses most times you want to use the `!` operator.
-    
-*   C defines assignment as an operator, whereas Python defines assignment as a statement. The value of the assignment operator is the value assigned. A consequence of C's design is that an assignment can legally be part of another statement.
+Algumas distinções importantes: 
+
+* C não possui um operador de exponenciação como o operador `**` do Python. Para exponenciação em C, você deverá usar uma função de biblioteca denominada `pow ()`. Por exemplo, `pow (1.1, 2.0)` calcula 1.1². 
+
+* C usa símbolos em vez de palavras para as operações booleanas AND (`&&`), OR (`||`) e NOT (`!`). 
+  
+* O nível de precedência de NOT (o operador `!`) É muito alto em C. Isso quase nunca é desejado, então você acaba precisando de parênteses na maioria das vezes quer for usar o operador `!`. 
+  
+* C define a atribuição como um operador, enquanto o Python define a atribuição como um comando. O valor do operador de atribuição é o valor atribuído. Uma consequência do design de C é que uma atribuição pode legalmente ser parte de outra declaração.
 
 ```c
 while ((a = getchar()) != EOF)
 ```    
-
     
-Here, we assign the value returned by `getchar()` to the variable `a`, and then we test whether the value assigned to `a` matches the `EOF` constant, which is used to decide whether to repeat the loop again. Many people contend that this style of programming is extraordinarily bad style; others find it too convenient to avoid. Python, of course, was designed so that an assignment must occur as its own separate statement, so nesting assignments within a `**while**` statement's condition is illegal in Python.
+Aqui, nós atribuímos o valor retornado por `getchar ()` à variável `a`, e então testamos se o valor atribuído a` a` corresponde à constante `EOF`, que é usada para decidir se deve repetir o loop novamente . Muitas pessoas afirmam que esse estilo de programação é extraordinariamente ruim; outros acham muito conveniente evitar. O Python, é claro, foi projetado de modo que uma atribuição deva ocorrer como sua própria instrução separada, portanto, as atribuições dentro de uma condição de um comando `while` é ilegal no Python.
+
     
 *   C's operators `++` and `--` are for incrementing and decrementing a variable. Thus, the statement “`i++`” is a shorter form of the statement “`i = i + 1`” (or `i += 1`”).
     
@@ -204,7 +202,7 @@ Again, the test expression requires a set of parentheses around it, there is no 
 
 As in Python, the `**break**` statement immediately exits the innermost loop in which it is found. Of course, the statement has a semicolon following it.
 
-7. `**continue**;`
+1. `**continue**;`
 
 Also as in Python, the `**continue**` statement skips to the bottom of the innermost loop in which it is found and tests whether to repeat the loop again. It has a semicolon following it, too.
 
