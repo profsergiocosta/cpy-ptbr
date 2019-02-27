@@ -51,7 +51,7 @@ Aqui, nós atribuímos o valor retornado por `getchar ()` à variável `a`, e en
     
 *  O operador de divisão `/` realiza uma divisão inteira se ambos operandos forem do tipo `int`; isto é, qualquer resto é ignorado com tal divisão. Assim, em C, a expressão ` 13 / 5` é avaliada como 2, enquanto `13 / 5.0` é 2.6: A primeira tem valores inteiros como operandos de ambos lados, enquanto a segunda tem um número de ponto flutuante à direita.
     
-    By contrast, with newer versions of Python (3.0 and later), the single-slash operator always does floating-point division. With older Python versions, the single-slash operator worked as with C, but this would often lead to bugs — in part because the type associated with a variable is not fixed as it is in a C program.
+    > Por outro lado, com versões mais recentes do Python (3.0 e posterior), o operador de barra única sempre faz a divisão de ponto flutuante. Com versões mais antigas do Python, o operador single-slash funcionava como o C, mas isso muitas vezes levava a bugs - em parte porque o tipo associado a uma variável não é fixo como está em um programa em C.
     
 
 ### 2.2. Basic types
