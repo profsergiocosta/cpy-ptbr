@@ -47,9 +47,9 @@ while ((a = getchar()) != EOF)
 Aqui, nós atribuímos o valor retornado por `getchar ()` à variável `a`, e então testamos se o valor atribuído a` a` corresponde à constante `EOF`, que é usada para decidir se deve repetir o loop novamente . Muitas pessoas afirmam que esse estilo de programação é extraordinariamente ruim; outros acham muito conveniente evitar. O Python, é claro, foi projetado de modo que uma atribuição deva ocorrer como sua própria instrução separada, portanto, as atribuições dentro de uma condição de um comando `while` é ilegal no Python.
 
     
-*   C's operators `++` and `--` are for incrementing and decrementing a variable. Thus, the statement “`i++`” is a shorter form of the statement “`i = i + 1`” (or `i += 1`”).
+*   Os operadores `++` e `--` são para incrementar e decrementar uma variável. Assim, a declaração ` i ++ ` é uma forma mais curta da declaração ` i = i + 1` (ou` i + = 1` ).
     
-*   C's division operator `/` does integer division if both sides of the operator have an `**int**` type; that is, any remainder is ignored with such a division. Thus, in C the expression “`13 / 5`” evaluates to 2, while `13 / 5.0`” is 2.6: The first has integer values on each side, while the second has a floating-point number on the right.
+*  O operador de divisão `/` realiza uma divisão inteira se ambos operandos forem do tipo `int`; isto é, qualquer resto é ignorado com tal divisão. Assim, em C, a expressão ` 13 / 5` é avaliada como 2, enquanto `13 / 5.0` é 2.6: A primeira tem valores inteiros como operandos de ambos lados, enquanto a segunda tem um número de ponto flutuante à direita.
     
     By contrast, with newer versions of Python (3.0 and later), the single-slash operator always does floating-point division. With older Python versions, the single-slash operator worked as with C, but this would often lead to bugs — in part because the type associated with a variable is not fixed as it is in a C program.
     
