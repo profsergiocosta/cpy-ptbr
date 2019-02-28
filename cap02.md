@@ -54,33 +54,23 @@ Aqui, nós atribuímos o valor retornado por `getchar ()` à variável `a`, e en
     > Por outro lado, com versões mais recentes do Python (3.0 e posterior), o operador de barra única sempre faz a divisão de ponto flutuante. Com versões mais antigas do Python, o operador single-slash funcionava como o C, mas isso muitas vezes levava a bugs - em parte porque o tipo associado a uma variável não é fixo como está em um programa em C.
     
 
-### 2.2. Basic types
+### 2.2. Tipos básicos
 
-C's list of types is quite constrained.
+A lista de tipos de C é bastante restrita.
 
-`**int**`
+* `int` para um inteiro
+* `char` para um único caractere
+* `float` para um número de ponto flutuante de precisão simples
+* `duplo` para um número de ponto flutuante de precisão dupla
 
-for an integer
+O tipo `int` é o mais simples. Você também pode criar outros tipos inteiros, usando os nomes de tipo `long` e `short`. Um `long` reserva pelo menos tantos bits quanto um `int`, enquanto um `short` reserva menos bits que um `int` (ou o mesmo número ). A linguagem não garante o número de bits para cada um, mas a maioria dos compiladores atuais usa 32 bits para um `int`, o que permite números de até 2.15 × 10<sup>9</sup>. Isso é suficiente para a maioria dos propósitos, e muitos compiladores também usam 32 bits para um `long`, então as pessoas normalmente usam o `int` em seus programas.
 
-`**char**`
+O tipo ` char` também é simples: representa um único caracter, como uma letra ou pontuação. Você pode representar um caracter individual em um programa colocando o caractere entre aspas simples: `digit0 = '0'; ` atribuiria o caracter zero em uma variável `char denominada` `digit0`.
 
-for a single character
+Dos dois tipos de ponto flutuante, `float` e `double`, a maioria dos programadores hoje utilizam quase exclusivamente o tipo `double`. Esses tipos são para números que podem ter um ponto decimal neles, como 2.5, ou para números maiores que um `int` podendo conter valores como 6.02 × 10<sup>23</sup>. Os dois tipos diferem em que um `float` normalmente utiliza apenas 32 bits de armazenamento, enquanto um `double` normalmente utiliza 64 bits. A técnica de armazenamento de 32 bits permite um intervalo de números mais estreito (−3,4 × 10<sup>38</sup> a 3,4 × 10<sup>38</sup>) e - mais problemático - cerca de 7 dígitos significativos. Um `float` não pôde armazenar um número como 281.421.906 (a população dos EUA em 2000, de acordo com o censo), porque requer nove dígitos significativos; teria que armazenar uma aproximação, como 281,421,920. Por outro lado, a técnica de armazenamento de 64 bits permite um intervalo mais amplo de números (-1,7 × 10<sup>308</sup> a 1,7 × 10<sup>308</sup>) e aproximadamente 15 dígitos significativos. Isso é mais adequado para propósitos gerais, e os 32 bits extras de armazenamento raramente valem a pena, então `double` é quase sempre preferível.
 
-`**float**`
 
-for a single-precision floating-point number
-
-`**double**`
-
-for a double-precision floating-point number
-
-The `**int**` type is straightforward. You can also create other types of integers, using the type names `**long**` and `**short**`. A `**long**` reserves at least as many bits as an `**int**`, while a `**short**` reserves fewer bits than an `**int**` (or the same number). The language does not guarantee the number of bits for each, but most current compilers use 32 bits for an `**int**`, which allows numbers up to 2.15×109. This is sufficient for most purposes, and many compilers also use 32 bits for a `**long**` anyway, so people typically use `**int**` in their programs.
-
-The `**char**` type is also straightforward: It represents a single character, like a letter or punctuation symbol. You can represent an individual character in a program by enclosing the character in single quotation marks: “`digit0 = '0';`” would place the zero digit character into the `**char**` variable `digit0`.
-
-Of the two floating-point types, `**float**` and `**double**`, most programmers today stick almost exclusively to `**double**`. These types are for numbers that could have a decimal point in them, like 2.5, or for numbers larger than an `**int**` can hold, like 6.02×1023. The two types differ in that a `**float**` typically takes only 32 bits of storage while a `**double**` typically takes 64 bits. The 32-bit storage technique allows a narrower range of numbers (−3.4×1038 to 3.4×1038) and — more problematic — about 7 significant digits. A `**float**` could not store a number like 281,421,906 (the U.S.'s population in 2000, according to the census), because it requires nine significant digits; it would have to store an approximation instead, like 281,421,920. By contrast, the 64-bit storage technique allows a wider range of numbers (−1.7×10308 to 1.7×10308) and roughly 15 significant digits. This is more adequate for general purposes, and the extra 32 bits of storage is rarely worth saving, so `**double**` is almost always preferred.
-
-C does _not_ have a Boolean type for representing true/false values. This has major implications for a statement like `**if**`, where you need a test to determine whether to execute the body. C's approach is to treat the integer 0 as _false_ and all other integer values as _true_. The following would be a legal C program.
+C não possui um tipo booleano para representar valores true / false. Isto tem implicações importantes para uma declaração como `if `, onde você precisa de um teste para determinar se deve executar o corpo. A abordagem de C é tratar o inteiro 0 como _false_ e todos os outros valores inteiros como _true_. O seguinte seria um programa C legal.
 
 ```c
 int main() {
@@ -94,18 +84,19 @@ int main() {
 } 
 ```
 
-This program would compile, and it would print “in if” when executed, since the value of the `**if**` expression (`i`) turns out to be 5, which isn't 0 and thus the `**if**` condition succeeds.
+Este programa compilaria, e imprimiria “in if” quando executado, desde que o valor da expressão `if( i)` seja 5, o que não é 0 e, portanto a condição seria verdadeira.
 
-C's operators that look like they should compute Boolean values (like `==`, `&&`, and `||`) actually compute `**int**` values instead. In particular, they compute 1 to represent _true_ and 0 to represent _false_. This means that you could legitimately type the following to count how many of `a`, `b`, and `c` are positive.
+Os operadores de C que parecem operar sobre valores booleanos (como `==`, `&&`, e `||`), na verdade, operam sobre valores inteiros. Em particular, eles computam 1 para representar _true_ e 0 para representar _false_. Isso significa que você pode legitimamente digitar o seguinte para contar quantos `a`,` b` e `c` são positivos.
 
 ```c
 pos = (a > 0) + (b > 0) + (c > 0);
 ```
-This quirk — that C regards all non-zero integers as true — is generally regarded as a mistake. C introduced it machine languages rarely have direct support for Boolean values, but typically machine languages expect you to accomplish such tests by comparing to zero. But compilers have improved beyond the point they were when C was invented, and they can now easily translate Boolean comparisons to efficient machine code. What's more, this design of C leads to confusing programs, so most expert C programmers eschew using the shortcut, preferring instead to explicitly compare to zero as a matter of good programming style. But such avoidance doesn't fix the fact that this language quirk often leads to program errors. Most newer languages choose to have a special type associated with Boolean values. (Python has its own Boolean type, but it also treats 0 as false for `**if**` statements.)
+Essa peculiaridade - que C considera verdadeiros os inteiros diferentes de zero - é geralmente considerado um erro. Quando a linguagem foi desenvolvido as linguagens de máquina raramente tinham suporte direto para valores booleanos, normalmente esperava que você realize esses testes comparando-os com zero. Mas os compiladores melhoraram além do ponto em que estavam quando o C foi inventado, e agora podem facilmente traduzir comparações booleanas com código de máquina eficiente. Além do mais, esse design de C leva a programas confusos, portanto, a maioria dos programadores especialistas em C evitam usar o atalho, preferindo compará-lo explicitamente a zero como uma questão de bom estilo de programação. Mas tal prática não conserta o fato de que essa peculiaridade da linguagem geralmente leva a erros de programação. A maioria das linguagens mais novas optam por um tipo especial associado a valores booleanos. (O Python possui seu próprio tipo booleano, mas também trata 0 como falso para as instruções `if`).
 
-### 2.3. Braces
+### 2.3.Chaves 
 
-Several statements, like the `**if**` statement, include a body that can hold multiple statements. Typically the body is surrounded by braces ('{' and '}') to indicate its extent. But when the body holds only a single statement, the braces are optional. Thus, we could find the maximum of two numbers with no braces, since the body of both the `**if**` and the `**else**` contain only a single statement.
+
+Várias declarações, como a instrução `if `, incluem um corpo que pode conter várias instruções. Normalmente, o corpo é cercado por chaves ('{' e '}') para indicar sua extensão. Mas quando o corpo possui apenas uma declaração, as chaves são opcionais. Assim, podemos encontrar o máximo de dois números sem chaves, já que o corpo de ambos, ` if ` e `else`, contém apenas uma única instrução.
 
 ```c
 if (first > second)
@@ -114,9 +105,9 @@ else
     max = second; 
 ```
 
-(We could also include braces on just one of the two bodies, as long as that body contains just one statement.)
+(Também poderíamos incluir chaves em apenas um dos dois corpos, desde que esse corpo contenha apenas uma declaração.)
 
-C programmers use this quite often when they want one of several `**if**` tests to be executed. An example of this is with the quadratic formula code above. We could compute the number of solutions as follows:
+Os programadores C usam isso com bastante frequência quando querem que um dos vários testes `** if **` sejam executados. Um exemplo disso é com o código da fórmula quadrática abaixo. Podemos calcular o número de soluções da seguinte forma:
 
 ```c
 disc = b * b - 4 * a * c;
@@ -131,7 +122,7 @@ if (disc < 0) {
 } 
 ```
 
-Notice that the `**else**` clause here holds just one statement (an `**if**`…`**else**` statement), so we can omit the braces around it. We might then write it thus:
+Note que a cláusula `else ` aqui contém apenas uma instrução (uma declaração `if … else`), então podemos omitir as chaves ao redor dela. Podemos então escrever da seguinte maneira:
 
 ```c
 disc = b * b - 4 * a * c;
@@ -145,8 +136,7 @@ if (disc < 0) {
     } 
 ```
 
-But this situation arises often enough that C programmers follow a special rule for indenting in this case — a rule that allows all cases to be written at the same level of indentation.
-
+Mas essa situação surge com freqüência suficiente para que os programadores C sigam uma regra especial de indentanção nesse caso - uma regra que permite que todos os casos sejam escritos no mesmo nível de recuo.
 ```c
 disc = b * b - 4 * a * c;
 if (disc < 0) {
@@ -157,9 +147,9 @@ if (disc < 0) {
     num_sol = 2;
 } 
 ```
-Because this is feasible using C's bracing rules, C does not include the concept of an `elif` clause that you find in Python. You can just string together as many “`**else if**`” combinations as you want.
+Como isso é viável usando as regras de chaves de C, C não inclui o conceito de uma cláusula `elif` que você encontra no Python. Você pode apenas agrupar quantas combinações `else if ` que você quiser. 
 
-Other than this particular situation, I recommend that you include the braces anyway. As you continue working on a program, you often find that you want to add additional statements into the body of an `**if**`, and having the braces there already saves you the bother of adding them later on. And it makes it easier to keep track of braces, since each indentation level requires a closing right brace.
+Além desta situação particular, eu recomendo que você inclua as chaves de qualquer maneira. À medida que você continua trabalhando em um programa, você freqüentemente acha que deseja adicionar instruções adicionais no corpo de um `if `, e ter as chaves lá já lhe poupa o incômodo de adicioná-las mais tarde. E torna mais fácil manter o controle das chaves, já que cada nível de indentação requer uma chave direita de fechamento.
 
 ### 2.4. Statements
 
