@@ -1,13 +1,14 @@
-Nos anos 70, nos Laboratórios Bell, Ken Thompson projetou a linguagem de programação C para ajudar no desenvolvimento do sistema operacional UNIX. Através de uma variedade de eventos históricos, poucos intencionais, o UNIX cresceu de um pequeno desvio de pesquisa para um popular sistema operacional de força industrial. E junto com o sucesso do UNIX veio o C, já que o sistema operacional foi projetado para que os programas C pudessem acessar todos os seus recursos. À medida que mais programadores adquiriram experiência com o C, eles começaram a usá-lo também em outras plataformas, de modo que se tornou uma das linguagens primárias para o desenvolvimento de software no final dos anos 80.
 
-Enquanto C não possui mais o amplo domínio que já teve, sua influência foi tão grande que muitas outras linguagens foram muito influenciadas, como C++, C#, Objective-C, Java, JavaScript, PHP e Perl. Saber C é em si uma coisa boa - é um excelente ponto de partida para se relacionar mais diretamente com o funcionamento do computador. Mas aprender C também é um bom ponto de partida para se familiarizar com todos essas outras linguagens.
-
-Este documento é dirigido para pessoas que aprenderam programação em Python e que desejam aprender sobre a influência de C. C em Python é considerável, nas palavras do inventor do Python, Guido van Rossum (“Uma Introdução ao Python para Programadores UNIX / C”). , 1993). Portanto, aprender Python é um bom primeiro passo para aprender C.
 
 ## 1. Construindo um simples programa
 
 
-Começaremos com vários princípios gerais, usnando para isso programa C completo, mas limitado, até o final da Seção 1.
+Começaremos com vários princípios gerais, usando para isso programa C completo, mas limitado, até o final da Seção 1. Porém, antes apresentamos um breve histórico da linguagem.
+
+
+> Nos anos 70, nos Laboratórios Bell, Ken Thompson projetou a linguagem de programação C para ajudar no desenvolvimento do sistema operacional UNIX. Através de uma variedade de eventos históricos, poucos intencionais, o UNIX cresceu de um pequeno desvio de pesquisa para um popular sistema operacional de força industrial. E junto com o sucesso do UNIX veio o C, já que o sistema operacional foi projetado para que os programas C pudessem acessar todos os seus recursos. À medida que mais programadores adquiriram experiência com o C, eles começaram a usá-lo também em outras plataformas, de modo que se tornou uma das linguagens primárias para o desenvolvimento de software no final dos anos 80.
+
+> Enquanto C não possui mais o amplo domínio que já teve, sua influência foi tão grande que muitas outras linguagens foram muito influenciadas, como C++, C#, Objective-C, Java, JavaScript, PHP e Perl. Saber C é em si uma coisa boa - é um excelente ponto de partida para se relacionar mais diretamente com o funcionamento do computador. Mas aprender C também é um bom ponto de partida para se familiarizar com todos essas outras linguagens.
 
 ### 1.1. Compiladores versus interpretadores
 
