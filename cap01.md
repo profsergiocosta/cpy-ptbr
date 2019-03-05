@@ -1,3 +1,9 @@
+Nos anos 70, nos Laboratórios Bell, Ken Thompson projetou a linguagem de programação C para ajudar no desenvolvimento do sistema operacional UNIX. Através de uma variedade de eventos históricos, poucos intencionais, o UNIX cresceu de um pequeno desvio de pesquisa para um popular sistema operacional de força industrial. E junto com o sucesso do UNIX veio o C, já que o sistema operacional foi projetado para que os programas C pudessem acessar todos os seus recursos. À medida que mais programadores adquiriram experiência com o C, eles começaram a usá-lo também em outras plataformas, de modo que se tornou uma das linguagens primárias para o desenvolvimento de software no final dos anos 80.
+
+Enquanto C não possui mais o amplo domínio que já teve, sua influência foi tão grande que muitas outras linguagens foram muito influenciadas, como C++, C#, Objective-C, Java, JavaScript, PHP e Perl. Saber C é em si uma coisa boa - é um excelente ponto de partida para se relacionar mais diretamente com o funcionamento do computador. Mas aprender C também é um bom ponto de partida para se familiarizar com todos essas outras linguagens.
+
+Este documento é dirigido para pessoas que aprenderam programação em Python e que desejam aprender sobre a influência de C. C em Python é considerável, nas palavras do inventor do Python, Guido van Rossum (“Uma Introdução ao Python para Programadores UNIX / C”). , 1993). Portanto, aprender Python é um bom primeiro passo para aprender C.
+
 ## 1. Construindo um simples programa
 
 
@@ -123,7 +129,7 @@ Enquanto o computador pode estar tão feliz com isso, nenhum humano sensato pref
 
 (Existem algumas exceções à regra de ignorar o espaço em branco: É ocasionalmente significativo separar palavras e símbolos. O fragmento `intmain` é diferente do fragmento ` int main` ; da mesma forma, o fragmento `a++ + 1` é diferente do fragmento `a+ + +1`.)
 
-### 1.4. A função `printf ()
+### 1.4. A função `printf ()`
 
 À medida que trabalhamos para escrever programas C úteis, um ingrediente importante é exibir resultados para o usuário ver, o que você realizaria usando `print` em Python. Em C, você usa `printf ()`. Esta é, na verdade, uma função, uma das mais úteis na biblioteca padrão da linguagem. 
 
@@ -194,13 +200,13 @@ double expon(double b, int e) {
 
 Uma função C é definida nomeando o tipo de retorno (`double` aqui, já que a função produz um resultado de ponto flutuante), seguido pelo nome da função (`expon`), seguido por um conjunto de parênteses listando os parâmetros. Cada parâmetro é descrito incluindo o tipo do parâmetro e o nome do parâmetro. A seguir, a lista de parâmetros entre parênteses é um conjunto de chaves, no qual você aninha o corpo da função. 
 
-Se você tem uma função que não possui nenhum valor de retorno útil, você usaria 'void` como o tipo de retorno. 
+Se você tem uma função que não possui nenhum valor de retorno útil, você usaria `void` como o tipo de retorno. 
 
 Programas possuem uma função especial chamada `main`, cujo tipo de retorno é um inteiro. Esta função é o “ponto de partida” para o programa: O computador essencialmente chama a função `main` do programa quando quer executar o programa. O valor de retorno inteiro é aparentemente sem sentido; sempre retornaremos 0 em vez de nos preocuparmos sobre como o valor de retorno pode ser usado. 
 
 > Observação: este resultado é útil ao sistema operacional, pois se um programa retorna 0, o sistema operacional sabe que ele executou sem erros. 
  
-Estamos agora em posição de apresentar um programa C completo, juntamente com seu equivalente em Python.
+Estamos agora em posição de apresentar um programa C completo,
 
 ```c
 int gcd(int a, int b) {
@@ -217,6 +223,8 @@ int main() {
   return 0;
 } 
 ```
+
+juntamente com seu equivalente em Python.
 
 ```python
 def gcd(a, b):
