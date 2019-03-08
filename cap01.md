@@ -15,8 +15,8 @@ Começaremos com vários princípios gerais, usando para isso programa C complet
 Uma grande diferença entre C e Python é simplesmente como você executa programas escritos nas duas linguagens. Com programas em C, você geralmente usa um _compilador_ antes de executar. Por outro lado, com o Python, você normalmente usa um _interpretador_. Um **compilador** gera um arquivo contendo a tradução do programa no código nativo da máquina. O compilador na verdade não executa o programa; em vez disso, você primeiro executa o compilador para criar um executável nativo e, em seguida, executa o executável gerado. Assim, depois de criar um programa em C, executá-lo é um processo de duas etapas.
 
 ```
-sh:~$ gcc meuprograma.c
-sh:~$ ./a.out
+sh:~$ gcc meuprograma.c -o meuprograma
+sh:~$ ./meuprograma
 GCD: 8
 ```
 
