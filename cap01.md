@@ -1,10 +1,18 @@
+
+
 ## 1. Construindo um simples programa
 
 
-Começaremos com vários princípios gerais, usnando para isso programa C completo, mas limitado, até o final da Seção 1.
+Começaremos com vários princípios gerais, usando para isso programa C completo, mas limitado, até o final da Seção 1. Porém, antes apresentamos um breve histórico da linguagem.
+
+
+> Nos anos 70, nos Laboratórios Bell, Ken Thompson projetou a linguagem de programação C para ajudar no desenvolvimento do sistema operacional UNIX. Através de uma variedade de eventos históricos, poucos intencionais, o UNIX cresceu de um pequeno desvio de pesquisa para um popular sistema operacional de força industrial. E junto com o sucesso do UNIX veio o C, já que o sistema operacional foi projetado para que os programas C pudessem acessar todos os seus recursos. À medida que mais programadores adquiriram experiência com o C, eles começaram a usá-lo também em outras plataformas, de modo que se tornou uma das linguagens primárias para o desenvolvimento de software no final dos anos 80.
+
+> Enquanto C não possui mais o amplo domínio que já teve, sua influência foi tão grande que muitas outras linguagens foram muito influenciadas, como C++, C#, Objective-C, Java, JavaScript, PHP e Perl. Saber C é em si uma coisa boa - é um excelente ponto de partida para se relacionar mais diretamente com o funcionamento do computador. Mas aprender C também é um bom ponto de partida para se familiarizar com todos essas outras linguagens.
 
 ### 1.1. Compiladores versus interpretadores
 
+<<<<<<< HEAD
 Uma grande diferença entre C e Python é simplesmente como você executa programas escritos nas duas linguagens. Com programas em C, você geralmente usa um _compilador_ antes de executar. Por outro lado, com o Python, você normalmente usa um _interpretador_. Um ** compilador ** gera um arquivo contendo a tradução do programa no código nativo da máquina. O compilador na verdade não executa o programa; em vez disso, você primeiro executa o compilador para criar um executável nativo e, em seguida, executa o executável gerado. Assim, depois de criar um programa em C, 
 
 
@@ -19,16 +27,23 @@ int main () {
 
 
 executá-lo é um processo de duas etapas.
+=======
+Uma grande diferença entre C e Python é simplesmente como você executa programas escritos nas duas linguagens. Com programas em C, você geralmente usa um _compilador_ antes de executar. Por outro lado, com o Python, você normalmente usa um _interpretador_. Um **compilador** gera um arquivo contendo a tradução do programa no código nativo da máquina. O compilador na verdade não executa o programa; em vez disso, você primeiro executa o compilador para criar um executável nativo e, em seguida, executa o executável gerado. Assim, depois de criar um programa em C, executá-lo é um processo de duas etapas.
+>>>>>>> 34ef05c059d8b7910ccec3166d20bdc1a2aac923
 
 ```
 sh:~$ gcc meuprograma.c -o meuprograma
 sh:~$ ./meuprograma
+<<<<<<< HEAD
 Ola mundo!
+=======
+GCD: 8
+>>>>>>> 34ef05c059d8b7910ccec3166d20bdc1a2aac923
 ```
 
 No primeiro comando ("gcc meuprograma.c"), invocamos o compilador, chamado _gcc_. O compilador lê o arquivo meuprograma.c, no qual salvamos nosso código C, e ele gera um novo arquivo chamado a.out contendo uma tradução deste código no código binário usado pela máquina. No segundo comando ("./a.out"), dizemos ao computador para executar este código binário. Como está executando o programa, o computador não tem idéia de que a.out acabou de ser criado a partir de algum programa em C: ele simplesmente executa cegamente o código encontrado no arquivo a.out, da mesma forma que executa cegamente o código encontrado no gcc arquivo em resposta ao primeiro comando.
 
-Por outro lado, um ** interpretador** lê o programa escrito pelo usuário e o executa diretamente. Isso remove uma etapa do processo de execução, mas um compilador tem a vantagem de gerar um executável que é executado da mesma forma que a maioria dos outros aplicativos da máquina, e usualmente gerando códigos mais rápidos. 
+Por outro lado, um **interpretador** lê o programa escrito pelo usuário e o executa diretamente. Isso remove uma etapa do processo de execução, mas um compilador tem a vantagem de gerar um executável que é executado da mesma forma que a maioria dos outros aplicativos da máquina, e usualmente gerando códigos mais rápidos. 
 
 Ser compilado tem algumas implicações radicais no design da linguagem. C é projetada para que o compilador possa dizer tudo o que precisa saber para traduzir o programa C sem realmente executar o programa.
 
@@ -136,7 +151,7 @@ Enquanto o computador pode estar tão feliz com isso, nenhum humano sensato pref
 
 (Existem algumas exceções à regra de ignorar o espaço em branco: É ocasionalmente significativo separar palavras e símbolos. O fragmento `intmain` é diferente do fragmento ` int main` ; da mesma forma, o fragmento `a++ + 1` é diferente do fragmento `a+ + +1`.)
 
-### 1.4. A função `printf ()
+### 1.4. A função `printf ()`
 
 À medida que trabalhamos para escrever programas C úteis, um ingrediente importante é exibir resultados para o usuário ver, o que você realizaria usando `print` em Python. Em C, você usa `printf ()`. Esta é, na verdade, uma função, uma das mais úteis na biblioteca padrão da linguagem. 
 
@@ -207,13 +222,13 @@ double expon(double b, int e) {
 
 Uma função C é definida nomeando o tipo de retorno (`double` aqui, já que a função produz um resultado de ponto flutuante), seguido pelo nome da função (`expon`), seguido por um conjunto de parênteses listando os parâmetros. Cada parâmetro é descrito incluindo o tipo do parâmetro e o nome do parâmetro. A seguir, a lista de parâmetros entre parênteses é um conjunto de chaves, no qual você aninha o corpo da função. 
 
-Se você tem uma função que não possui nenhum valor de retorno útil, você usaria 'void` como o tipo de retorno. 
+Se você tem uma função que não possui nenhum valor de retorno útil, você usaria `void` como o tipo de retorno. 
 
 Programas possuem uma função especial chamada `main`, cujo tipo de retorno é um inteiro. Esta função é o “ponto de partida” para o programa: O computador essencialmente chama a função `main` do programa quando quer executar o programa. O valor de retorno inteiro é aparentemente sem sentido; sempre retornaremos 0 em vez de nos preocuparmos sobre como o valor de retorno pode ser usado. 
 
 > Observação: este resultado é útil ao sistema operacional, pois se um programa retorna 0, o sistema operacional sabe que ele executou sem erros. 
  
-Estamos agora em posição de apresentar um programa C completo, juntamente com seu equivalente em Python.
+Estamos agora em posição de apresentar um programa C completo,
 
 ```c
 int gcd(int a, int b) {
@@ -230,6 +245,8 @@ int main() {
   return 0;
 } 
 ```
+
+juntamente com seu equivalente em Python.
 
 ```python
 def gcd(a, b):
