@@ -5,12 +5,25 @@ Começaremos com vários princípios gerais, usnando para isso programa C comple
 
 ### 1.1. Compiladores versus interpretadores
 
-Uma grande diferença entre C e Python é simplesmente como você executa programas escritos nas duas linguagens. Com programas em C, você geralmente usa um _compilador_ antes de executar. Por outro lado, com o Python, você normalmente usa um _interpretador_. Um ** compilador ** gera um arquivo contendo a tradução do programa no código nativo da máquina. O compilador na verdade não executa o programa; em vez disso, você primeiro executa o compilador para criar um executável nativo e, em seguida, executa o executável gerado. Assim, depois de criar um programa em C, executá-lo é um processo de duas etapas.
+Uma grande diferença entre C e Python é simplesmente como você executa programas escritos nas duas linguagens. Com programas em C, você geralmente usa um _compilador_ antes de executar. Por outro lado, com o Python, você normalmente usa um _interpretador_. Um ** compilador ** gera um arquivo contendo a tradução do programa no código nativo da máquina. O compilador na verdade não executa o programa; em vez disso, você primeiro executa o compilador para criar um executável nativo e, em seguida, executa o executável gerado. Assim, depois de criar um programa em C, 
+
+
+```C
+#include <stdio.h>
+
+int main () {
+    printf ("Ola mundo!\n")
+    return 0;
+}
+```
+
+
+executá-lo é um processo de duas etapas.
 
 ```
-sh:~$ gcc meuprograma.c
-sh:~$ ./a.out
-GCD: 8
+sh:~$ gcc meuprograma.c -o meuprograma
+sh:~$ ./meuprograma
+Ola mundo!
 ```
 
 No primeiro comando ("gcc meuprograma.c"), invocamos o compilador, chamado _gcc_. O compilador lê o arquivo meuprograma.c, no qual salvamos nosso código C, e ele gera um novo arquivo chamado a.out contendo uma tradução deste código no código binário usado pela máquina. No segundo comando ("./a.out"), dizemos ao computador para executar este código binário. Como está executando o programa, o computador não tem idéia de que a.out acabou de ser criado a partir de algum programa em C: ele simplesmente executa cegamente o código encontrado no arquivo a.out, da mesma forma que executa cegamente o código encontrado no gcc arquivo em resposta ao primeiro comando.
