@@ -38,7 +38,7 @@ Ser compilado tem algumas implicações radicais no design da linguagem. C é pr
 
 ### 1.2. Declarações Variáveis
 
-Entre as informações que compilador da linguagem C requrer, um dos exemplos mais notáveis é a **declarações de variáveis**, informando ao compilador sobre a variável antes que a variável seja realmente usada. Isso é típico de muitas linguagens de programação proeminentes, particularmente entre aquelas que devem ser compiladas antes de serem executadas.
+Entre as informações que compilador da linguagem C requer, um dos exemplos mais notáveis é a **declarações de variáveis**, informando ao compilador sobre a variável antes que a variável seja realmente usada. Isso é típico de muitas linguagens de programação proeminentes, particularmente entre aquelas que devem ser compiladas antes de serem executadas.
 
 > Observação: essas linguagens que requerem a declaração de variáveis, associando cada variável a um tipo, são conhecidas como estaticamente tipadas.
 
@@ -47,10 +47,10 @@ Em C, a declaração da variável define o tipo **da variável**, especificando 
 Declarar uma variável é bastante simples: você insere o tipo da variável, alguns espaços em branco, o nome da variável e um ponto e vírgula:
 
 ```c
-`double x;`
+double x;
 ```
 
-Em C, as declarações de variáveis pertencem ao topo da função em que são usadas.
+Em C, as de variáveis pertencem a função ou bloco em que são declarada.
 
 Se você esquecer de declarar uma variável, o compilador se recusará a compilar um programa no qual uma variável é usada, mas não é declarada. A mensagem de erro indicará a linha dentro do programa, o nome da variável e uma mensagem como "símbolo não declarado" (symbol undeclared). Por exemplo, dado o seguinte programa:
 
@@ -143,10 +143,10 @@ Enquanto o computador pode estar tão feliz com isso, nenhum humano sensato pref
 A maneira como os parâmetros para `printf ()` funcionam é um pouco complicada, mas também bastante conveniente: O primeiro parâmetro é uma string especificando o formato do que imprimir, e os seguintes parâmetros indicam os valores a serem impressos. A maneira mais fácil de entender isso é olhar para um exemplo.
 
 ```c
-`printf("# solns: %d\n", num_sol);`
+printf("# solns: %d\n", num_sol);
 ```
 
-Esta linha diz para imprimir usando “# solns:% d \ n” como a string de formatação. A função `printf ()` passa por esta string de formato, imprimindo os caracteres “# solns:” antes de chegar ao caractere de porcentagem '%'. O caractere de porcentagem é especial para `printf ()`: Diz para imprimir um valor especificado em um parâmetro subseqüente. Nesse caso, um _d_ minúsculo segue o caractere de porcentagem, indicando para exibir o parâmetro como um `int` no formato decimal. (O _d_ significa decimal.) Então, quando `printf ()` alcança “% d”, ele olha o valor do parâmetro a seguir (vamos imaginar `num_sol` é 2 neste exemplo) e exibe esse valor. Em seguida, continua através da string de formatação, neste caso, exibindo um caractere de quebra de linha. No geral, o usuário vê a seguinte linha de saída:
+Esta linha diz para imprimir usando “# solns:%d\n” como a string de formatação. A função `printf ()` passa por esta string de formatação, imprimindo os caracteres “# solns:” antes de chegar ao caractere de porcentagem '%'. O caractere de porcentagem é especial para `printf ()`: Diz para imprimir um valor especificado em um parâmetro subseqüente. Nesse caso, um _d_ minúsculo segue o caractere de porcentagem, indicando para exibir o parâmetro como um `int` no formato decimal. (O _d_ significa decimal.) Então, quando `printf ()` alcança `%d`, ele olha o valor do parâmetro a seguir (vamos imaginar `num_sol` é 2 neste exemplo) e exibe esse valor. Em seguida, continua através da string de formatação, neste caso, exibindo um caractere de quebra de linha. No geral, o usuário vê a seguinte linha de saída:
 
 > \# solns: 2
 
