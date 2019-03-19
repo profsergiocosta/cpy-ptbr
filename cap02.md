@@ -4,10 +4,10 @@ Agora que vimos como construir um programa completo, vamos aprender o universo d
 
 ### 2.1. Operadores
 
-Um ** operador ** é algo que podemos usar em expressões aritméticas, como um sinal de mais '+' ou um teste de igualdade '\ =='. Os operadores da linguagem C parecerão familiares, pois o designer da Python, Guido van Rossum, utilizou como referência esses operadores; mas existem algumas diferenças significativas.
+Um  operador  é algo que podemos usar em expressões aritméticas, como um sinal de mais '+' ou um teste de igualdade '\ =='. Os operadores da linguagem C parecerão familiares, pois o designer da Python, Guido van Rossum, utilizou como referência esses operadores; mas existem algumas diferenças significativas.
 
  
-> **C operator precedence**
+> C operator precedence
 > 
 > `++ --` (postfix)  
 > `+ - !` (unário)  
@@ -19,20 +19,20 @@ Um ** operador ** é algo que podemos usar em expressões aritméticas, como um 
 > `||`  
 > `= += -= *= /= %=`
 
-> **Python operator precedence**
-> `**`  
+> Python operator precedence
+> ``  
 > `+ -` (unary)  
 > `* / % //`  
 > `+ -` (binary)  
 > `< > <= >= == !=`  
-> `**not**`  
-> `**and**`  
-> `**or**`
+> `not`  
+> `and`  
+> `or`
 
 
 Algumas distinções importantes: 
 
-* C não possui um operador de exponenciação como o operador `**` do Python. Para exponenciação em C, você deverá usar uma função de biblioteca denominada `pow ()`. Por exemplo, `pow (1.1, 2.0)` calcula 1.1². 
+* C não possui um operador de exponenciação como o operador `` do Python. Para exponenciação em C, você deverá usar uma função de biblioteca denominada `pow ()`. Por exemplo, `pow (1.1, 2.0)` calcula 1.1². 
 
 * C usa símbolos em vez de palavras para as operações booleanas AND (`&&`), OR (`||`) e NOT (`!`). 
   
@@ -61,7 +61,7 @@ A lista de tipos de C é bastante restrita.
 * `int` para um inteiro
 * `char` para um único caractere
 * `float` para um número de ponto flutuante de precisão simples
-* `duplo` para um número de ponto flutuante de precisão dupla
+* `double` para um número de ponto flutuante de precisão dupla
 
 O tipo `int` é o mais simples. Você também pode criar outros tipos inteiros, usando os nomes de tipo `long` e `short`. Um `long` reserva pelo menos tantos bits quanto um `int`, enquanto um `short` reserva menos bits que um `int` (ou o mesmo número ). A linguagem não garante o número de bits para cada um, mas a maioria dos compiladores atuais usa 32 bits para um `int`, o que permite números de até 2.15 × 10<sup>9</sup>. Isso é suficiente para a maioria dos propósitos, e muitos compiladores também usam 32 bits para um `long`, então as pessoas normalmente usam o `int` em seus programas.
 
@@ -107,7 +107,7 @@ else
 
 (Também poderíamos incluir chaves em apenas um dos dois corpos, desde que esse corpo contenha apenas uma declaração.)
 
-Os programadores C usam isso com bastante frequência quando querem que um dos vários testes `** if **` sejam executados. Um exemplo disso é com o código da fórmula quadrática abaixo. Podemos calcular o número de soluções da seguinte forma:
+Os programadores C usam isso com bastante frequência quando querem que um dos vários testes ` if ` sejam executados. Um exemplo disso é com o código da fórmula quadrática abaixo. Podemos calcular o número de soluções da seguinte forma:
 
 ```c
 disc = b * b - 4 * a * c;
@@ -151,33 +151,33 @@ Como isso é viável usando as regras de chaves de C, C não inclui o conceito d
 
 Além desta situação particular, eu recomendo que você inclua as chaves de qualquer maneira. À medida que você continua trabalhando em um programa, você freqüentemente acha que deseja adicionar instruções adicionais no corpo de um `if `, e ter as chaves lá já lhe poupa o incômodo de adicioná-las mais tarde. E torna mais fácil manter o controle das chaves, já que cada nível de indentação requer uma chave direita de fechamento.
 
-### 2.4. Statements
+### 2.4. Comandos
 
 We've seen four types of statements, three of which correlate closely with Python.
 
-1\. `**int** x;`
+1. `int x;`
 
 We already discussed variable declarations in [Section 1.2](#s1.2). They have no parallel in Python.
 
-2\. `x = y + z;` or `printf("%d", x);`
+2. `x = y + z;` ou `printf("%d", x);`
 
 You can have an expression as a statement. Technically, the expression could be “`x + 3;`”, but such a statement has no point: We ask the computer to add `x` and 3, but we don't ask anything to happen to it. Almost always, the expressions have one of two forms: One form is an operator that changes a variable's value, like the assignment operator (“`x = 3;`”), the addition assignment operator `+=`, or the the increment operator `++`. The other form of expression that you see as a statement is a function call, like a statement that simply calls the `printf()` function.
 
-3\. `**if** (x < 0) { printf("negative"); }`
+3\. `if (x < 0) { printf("negative"); }`
 
-You can have an `**if**` statement, which works very similarly to Python's `**if**` statement. The only major difference is the syntax: In C, an `**if**` statement's condition must be enclosed in parentheses, there is no colon following the condition, and the body has a set of braces enclosing it.
+You can have an `if` statement, which works very similarly to Python's `if` statement. The only major difference is the syntax: In C, an `if` statement's condition must be enclosed in parentheses, there is no colon following the condition, and the body has a set of braces enclosing it.
 
-As we've already seen, C does not have an `elif` clause as in Python; instead, C programmers use the optional-brace rule and write “`**else if**`”.
+As we've already seen, C does not have an `elif` clause as in Python; instead, C programmers use the optional-brace rule and write “`else if`”.
 
-4\. `**return** 0;`
+4\. `return 0;`
 
-You can have a `**return**` statement to exit a function with a given return value. Or for a function with no return value (and a `**void**` return type), you would write simply “`**return**;`”.
+You can have a `return` statement to exit a function with a given return value. Or for a function with no return value (and a `void` return type), you would write simply “`return;`”.
 
 There are three more statement types that correlate closely to equivalents from Python.
 
-5\. `**while** (i >= 0) { i--; }`
+5\. `while (i >= 0) { i--; }`
 
-The `**while**` statement works identically to Python's, although the syntax is different in the same way that the `**if**` syntax is different.
+The `while` statement works identically to Python's, although the syntax is different in the same way that the `if` syntax is different.
 
 ```c
 while (i >= 0) {
@@ -188,36 +188,36 @@ while (i >= 0) {
 
 Again, the test expression requires a set of parentheses around it, there is no colon, and we use braces to surround the loop's body.
 
-6\. `**break**;`
+6\. `break;`
 
-As in Python, the `**break**` statement immediately exits the innermost loop in which it is found. Of course, the statement has a semicolon following it.
+As in Python, the `break` statement immediately exits the innermost loop in which it is found. Of course, the statement has a semicolon following it.
 
-1. `**continue**;`
+1. `continue;`
 
-Also as in Python, the `**continue**` statement skips to the bottom of the innermost loop in which it is found and tests whether to repeat the loop again. It has a semicolon following it, too.
+Also as in Python, the `continue` statement skips to the bottom of the innermost loop in which it is found and tests whether to repeat the loop again. It has a semicolon following it, too.
 
 And there are two types of statements that have no good parallel in Python.
 
 8. `for (i = 0; i < 10; i++) {…`
 
-While Python also has a `**for**` statement, its purpose and its syntax bear scant similarity to C's `**for**` statement. In C, the `**for**` keyword is followed by a set of parentheses containing three parts separated by semicolons.
+While Python also has a `for` statement, its purpose and its syntax bear scant similarity to C's `for` statement. In C, the `for` keyword is followed by a set of parentheses containing three parts separated by semicolons.
 
 ```c
 for (init; test; update)
 ```
 
-The intent of C's `**for**` loop is to enable stepping a variable through a series of numbers, like counting from 0 to 9. The part before the first semicolon (_init_) is performed as soon as the `**for**` statement is reached; it is for initializing the variable that will count. The part between the two semicolons (_test_) is evaluated before each iteration to determine whether the iteration should be repeated. And the part following the final semicolon (_update_) is evaluated at the end of each iteration to update the counting variable for the following iteration.
+The intent of C's `for` loop is to enable stepping a variable through a series of numbers, like counting from 0 to 9. The part before the first semicolon (_init_) is performed as soon as the `for` statement is reached; it is for initializing the variable that will count. The part between the two semicolons (_test_) is evaluated before each iteration to determine whether the iteration should be repeated. And the part following the final semicolon (_update_) is evaluated at the end of each iteration to update the counting variable for the following iteration.
 
-In practice, `**for**` loops are used most often for counting out n iterations. The standard idiom for this is the following.
+In practice, `for` loops are used most often for counting out n iterations. The standard idiom for this is the following.
 
 ```c
 for (i = 0; i < n; i++) {
     comandos
 }
 ```
-Here we have a counter variable `i` whose value starts at 0. With each iteration, we test whether `i` has reached n or not; and if it hasn't, then we execute the `**for**` statement's body and then perform the `i++` update so that `i` goes to the following integer. The result is that the body is executed for each value of `i` from 0 up to n − 1.
+Here we have a counter variable `i` whose value starts at 0. With each iteration, we test whether `i` has reached n or not; and if it hasn't, then we execute the `for` statement's body and then perform the `i++` update so that `i` goes to the following integer. The result is that the body is executed for each value of `i` from 0 up to n − 1.
 
-But you can use a `**for**` loop for other purposes, too. In the following example, we display the powers of 2 up to 512. Notice how the update portion of the `**for**` statement has changed to “`p *= 2`”.
+But you can use a `for` loop for other purposes, too. In the following example, we display the powers of 2 up to 512. Notice how the update portion of the `for` statement has changed to “`p *= 2`”.
 
 ```c
 for (p = 1; p <= 512; p *= 2) {
@@ -225,11 +225,11 @@ for (p = 1; p <= 512; p *= 2) {
 } 
 ```
 
-9\. `**switch** (grade) { **case** 'A':`…
+9\. `switch (grade) { case 'A':`…
 
-The `**switch**` statement has no equivalent in Python, but it is essentially equivalent to a particular form of an `**if**`…`**elif**`…`**elif**`…`**else**` statement where each of the tests are for different values of the same variable.
+The `switch` statement has no equivalent in Python, but it is essentially equivalent to a particular form of an `if`…`elif`…`elif`…`else` statement where each of the tests are for different values of the same variable.
 
-A `**switch**` statement is useful when you have several possible blocks of code, one of which should be executed based on the value of a particular expression. Here is a classic instance of the `**switch**` statement:
+A `switch` statement is useful when you have several possible blocks of code, one of which should be executed based on the value of a particular expression. Here is a classic instance of the `switch` statement:
 
 ```c
 switch (letter_grade) {
@@ -256,23 +256,25 @@ default:
 } 
 ```
 
-Inside the parentheses following the `**switch**` keyword, we have an expression, whose value must be a character or integer. The computer evaluates this expression and goes down to one of the `**case**` keywords based on its value. If the value is the character _A_, then the first block is executed (`gpa += 4; credits += 1;`); if it is _B_, then the second block is executed; if it is none of the characters (like an _F_), the block following the `**default**` keyword is executed.
+Inside the parentheses following the `switch` keyword, we have an expression, whose value must be a character or integer. The computer evaluates this expression and goes down to one of the `case` keywords based on its value. If the value is the character _A_, then the first block is executed (`gpa += 4; credits += 1;`); if it is _B_, then the second block is executed; if it is none of the characters (like an _F_), the block following the `default` keyword is executed.
 
-The `**break**` statement at the end of each block is a crucial detail: If the `**break**` statement is omitted, then the computer continues into the following block. In our above example, if we omitted all `**break**` statements, then a grade of _A_ would lead the computer to execute not only the _A_ case but also the _B_, _C_, _D_, _W_, and `**default**` cases. The result would be that `gpa` would increase by 4 + 3 + 2 + 1 = 10, while `credits` would increase by 5. Occasionally you actually want the computer to continue to the next case (called “fall-through”), and so you omit a `**break**` statement; but in practice you almost always want `**break**` statement at the end of each case.
+The `break` statement at the end of each block is a crucial detail: If the `break` statement is omitted, then the computer continues into the following block. In our above example, if we omitted all `break` statements, then a grade of _A_ would lead the computer to execute not only the _A_ case but also the _B_, _C_, _D_, _W_, and `default` cases. The result would be that `gpa` would increase by 4 + 3 + 2 + 1 = 10, while `credits` would increase by 5. Occasionally you actually want the computer to continue to the next case (called “fall-through”), and so you omit a `break` statement; but in practice you almost always want `break` statement at the end of each case.
 
-There is one important exception where fall-through is quite common: Sometimes you want the same code to apply to two different values. For instance, if we wanted the nothing to happen whether the grade is _P_ or _W_, then we could include “`**case** 'P':`” just before “`**case** 'W'`”, with no intervening code.
+There is one important exception where fall-through is quite common: Sometimes you want the same code to apply to two different values. For instance, if we wanted the nothing to happen whether the grade is _P_ or _W_, then we could include “`case 'P':`” just before “`case 'W'`”, with no intervening code.
 
 ### 2.5. Arrays
 
 Python supports many types that combine the basic atomic types into a group: tuples, lists, strings, dictionaries, sets.
 
-C's support is much more rudimentary: The _only_ composite type is the **array**, which is similar to Python's list except that an array in C cannot grow or shrink — its size is fixed at the time of creation. You can declare and access an array as follows.
+C's support is much more rudimentary: The _only_ composite type is the array, which is similar to Python's list except that an array in C cannot grow or shrink — its size is fixed at the time of creation. You can declare and access an array as follows.
 
 ```c
-
+double pops[50];
+pops[0] = 897934;
+pops[1] = pops[0] + 11804445; 
 ```
 
-In this example, we create an array containing 50 slots for `**double**` values. The slots are indexed 0 through 49.
+In this example, we create an array containing 50 slots for `double` values. The slots are indexed 0 through 49.
 
 C does not have an support for accessing the length of an array once it is created; that is, there is nothing analogous to Python's `len(pops)` or Java's `pops.length`.
 
@@ -281,10 +283,19 @@ An important point with respect to arrays: What happens if you access an array i
 This can lead to peculiar behavior. For example, consider the following program.
 
 ```c
+int main() {
+    int i;
+    int vals[5];
 
+    for (i = 0; i <= 5; i++) {
+        vals[i] = 0;
+    }
+    printf("%d\n", i);
+    return 0;
+} 
 ```
 
-Some systems (including a Linux installation I've encountered) would place `i` in memory just after the `vals` array; thus, when `i` reaches 5 and the computer executes “`vals[i] = 0`”, it in fact resets the memory corresponding to `i` to 0. As a result, the `**for**` loop has reset, and the program goes through the loop again, and again, repeatedly. The program never reaches the `printf` function call, and the program never terminates.
+Some systems (including a Linux installation I've encountered) would place `i` in memory just after the `vals` array; thus, when `i` reaches 5 and the computer executes “`vals[i] = 0`”, it in fact resets the memory corresponding to `i` to 0. As a result, the `for` loop has reset, and the program goes through the loop again, and again, repeatedly. The program never reaches the `printf` function call, and the program never terminates.
 
 In more complicated programs, the lack of array-bounds checking can lead to very difficult bugs, where a variable's value changes mysteriously somewhere within hundreds of functions, and you as the programmer must determine where an array index was accessed out of bounds. This is the type of bug that takes a lot of time to uncover and repair.
 
@@ -297,7 +308,9 @@ Every once in a while, you'll see a C program crash, with a message like “segm
 In C's original design, all comments begin with a slash followed by an asterisk (“/\*”) and end with an asterisk followed by a slash (“\*/”). The comment can span multiple lines.
 
 ```c
-
+/* gcd - returns the greatest common
+ * divisor of its two parameters */
+int gcd(int a, int b) { 
 ```
 
 (The asterisk on the second line is ignored by the compiler. Most programmers would include it, though, both because it looks prettier and also because it indicates to a human reader that the comment is being continued from the previous line.)
@@ -305,5 +318,12 @@ In C's original design, all comments begin with a slash followed by an asterisk 
 Though this multi-line comment was the only comment originally included with C, C++ introduced a single-line comment that has proven so handy that most of today's C compilers also support it. It starts with two slash characters (“//”) and goes to the end of the line.
 
 ```c
-
+int gcd(int a, int b) {
+  if (b == 0) {
+    return a;
+  } else {
+    // recurse if b != 0
+    return gcd(b, a % b);
+  }
+} 
 ```
