@@ -153,31 +153,31 @@ Além desta situação particular, eu recomendo que você inclua as chaves de qu
 
 ### 2.4. Comandos
 
-We've seen four types of statements, three of which correlate closely with Python.
+Vimos quatro tipos de instruções, três das quais se correlacionam de perto com o Python.
 
 1. `int x;`
 
-We already discussed variable declarations in [Section 1.2](#s1.2). They have no parallel in Python.
+Nós já discutimos declarações de variáveis em [Seção 1.2]. Eles não têm paralelo no Python.
 
 2. `x = y + z;` ou `printf("%d", x);`
 
-You can have an expression as a statement. Technically, the expression could be “`x + 3;`”, but such a statement has no point: We ask the computer to add `x` and 3, but we don't ask anything to happen to it. Almost always, the expressions have one of two forms: One form is an operator that changes a variable's value, like the assignment operator (“`x = 3;`”), the addition assignment operator `+=`, or the the increment operator `++`. The other form of expression that you see as a statement is a function call, like a statement that simply calls the `printf()` function.
+Você pode ter uma expressão como um comando. Tecnicamente, a expressão poderia ser `x + 3`; mas tal afirmação não tem sentido: pedimos ao computador para adicionar x e 3, mas não pedimos que nada aconteça a ele. Quase sempre, as expressões têm uma de duas formas: Uma forma é um operador que altera o valor de uma variável, como o operador de atribuição (`x = 3;`), o operador de atribuição de adição `+ =` ou o operador de incremento ` ++ `. A outra forma de expressão que você vê como uma instrução é uma chamada de função, como uma instrução que simplesmente chama a função `printf ()`.
 
-3\. `if (x < 0) { printf("negative"); }`
+3. `if (x < 0) { printf("negative"); }`
 
-You can have an `if` statement, which works very similarly to Python's `if` statement. The only major difference is the syntax: In C, an `if` statement's condition must be enclosed in parentheses, there is no colon following the condition, and the body has a set of braces enclosing it.
+Você pode ter um comando  `if`, que funciona de forma muito semelhante ao `if` do Python. A única grande diferença é a sintaxe: Em C, uma condição da declaração if deve ser colocada entre parênteses, não há dois pontos após a condição, e o corpo tem um conjunto de chaves que a encerram.
 
-As we've already seen, C does not have an `elif` clause as in Python; instead, C programmers use the optional-brace rule and write “`else if`”.
+Como já vimos, C não possui uma cláusula `elif` como no Python; em vez disso, os programadores C usam a regra de chave opcional e escrevem ` else if` .
 
-4\. `return 0;`
+4. `return 0;`
 
-You can have a `return` statement to exit a function with a given return value. Or for a function with no return value (and a `void` return type), you would write simply “`return;`”.
+Você pode ter um comando `return` para sair de uma função com um determinado valor de retorno. Ou para uma função sem valor de retorno (ou seja o tipo de retorno 'void'), você escreveria simplesmente `return;`.
 
-There are three more statement types that correlate closely to equivalents from Python.
+Existem mais três tipos de instruções que se correlacionam de perto com os equivalentes do Python.
 
-5\. `while (i >= 0) { i--; }`
+5. `while (i >= 0) { i--; }`
 
-The `while` statement works identically to Python's, although the syntax is different in the same way that the `if` syntax is different.
+O comando `while` funciona de forma idêntico à do Python, embora a sintaxe seja diferente da mesma maneira que a sintaxe `if`.
 
 ```c
 while (i >= 0) {
@@ -186,38 +186,38 @@ while (i >= 0) {
 } 
 ```
 
-Again, the test expression requires a set of parentheses around it, there is no colon, and we use braces to surround the loop's body.
+Novamente, a expressão de teste requer um conjunto de parênteses em torno dela, não há cólon e usamos chaves para cercar o corpo do loop.
 
-6\. `break;`
+6. `break;`
 
-As in Python, the `break` statement immediately exits the innermost loop in which it is found. Of course, the statement has a semicolon following it.
+Como no Python, o comando `break` sai imediatamente do loop mais interno em que ela é encontrada. Naturalmente, a declaração tem um ponto e vírgula a seguir.
 
-1. `continue;`
+7. `continue;`
 
-Also as in Python, the `continue` statement skips to the bottom of the innermost loop in which it is found and tests whether to repeat the loop again. It has a semicolon following it, too.
+Também como em Python, o comando `continue` pula para a parte inferior do loop mais interno no qual ele é encontrado e testa se deve repetir o loop novamente. Tem um ponto e vírgula também.
 
-And there are two types of statements that have no good parallel in Python.
+E existem dois tipos de comandos que não possuem um bom paralelo no Python.
 
 8. `for (i = 0; i < 10; i++) {…`
 
-While Python also has a `for` statement, its purpose and its syntax bear scant similarity to C's `for` statement. In C, the `for` keyword is followed by a set of parentheses containing three parts separated by semicolons.
+Embora o Python também tenha um comando `for`, seu propósito e sua sintaxe possuem pouca similaridade com a declaração` for` de C. Em C, a palavra-chave `for` é seguida por um conjunto de parênteses contendo três partes separadas por ponto e vírgula.
 
 ```c
 for (init; test; update)
 ```
 
-The intent of C's `for` loop is to enable stepping a variable through a series of numbers, like counting from 0 to 9. The part before the first semicolon (_init_) is performed as soon as the `for` statement is reached; it is for initializing the variable that will count. The part between the two semicolons (_test_) is evaluated before each iteration to determine whether the iteration should be repeated. And the part following the final semicolon (_update_) is evaluated at the end of each iteration to update the counting variable for the following iteration.
+A intenção do loop `for` de C é permitir passar uma variável através de uma série de números, como a contagem de 0 a 9. A parte antes do primeiro ponto e vírgula (_init_) é executada assim que a instrução` for` é alcançada; é para inicializar a variável que contará. A parte entre os dois pontos e vírgulas (_test_) é avaliada antes de cada iteração para determinar se a iteração deve ser repetida. E a parte que segue o ponto-e-vírgula final (_update_) é avaliada no final de cada iteração para atualizar a variável de contagem para a iteração a seguir.
 
-In practice, `for` loops are used most often for counting out n iterations. The standard idiom for this is the following.
+Na prática, loops 'for' são usados com mais freqüência para contar n iterações. O idioma padrão para isso é o seguinte.
 
 ```c
 for (i = 0; i < n; i++) {
     comandos
 }
 ```
-Here we have a counter variable `i` whose value starts at 0. With each iteration, we test whether `i` has reached n or not; and if it hasn't, then we execute the `for` statement's body and then perform the `i++` update so that `i` goes to the following integer. The result is that the body is executed for each value of `i` from 0 up to n − 1.
+Aqui temos uma variável de contador `i` cujo valor começa em 0. Com cada iteração, testamos se ` i` atingiu `n` ou não; e se não tiver, então nós executamos o corpo da declaração `for` e então executamos a atualização` i++ `para que `i` vá para o inteiro seguinte. O resultado é que o corpo é executado para cada valor de `i` de 0 até n - 1.
 
-But you can use a `for` loop for other purposes, too. In the following example, we display the powers of 2 up to 512. Notice how the update portion of the `for` statement has changed to “`p *= 2`”.
+Mas você também pode usar um laço `for` para outros propósitos. No exemplo a seguir, exibimos as potências de 2 até 512. Observe como a parte de atualização da declaração `for` mudou para“ `p *= 2`”.
 
 ```c
 for (p = 1; p <= 512; p *= 2) {
@@ -225,11 +225,11 @@ for (p = 1; p <= 512; p *= 2) {
 } 
 ```
 
-9\. `switch (grade) { case 'A':`…
+9. `switch (conceito) { case 'A':`…
 
-The `switch` statement has no equivalent in Python, but it is essentially equivalent to a particular form of an `if`…`elif`…`elif`…`else` statement where each of the tests are for different values of the same variable.
+O comando `switch` não tem equivalente em Python, mas é essencialmente equivalente a uma forma particular de uma declaração` if`… `elif`…` elif`… `else` onde cada um dos testes é para valores diferentes da mesma variável.
 
-A `switch` statement is useful when you have several possible blocks of code, one of which should be executed based on the value of a particular expression. Here is a classic instance of the `switch` statement:
+Um comando `switch` é útil quando você tem vários blocos de código possíveis, um dos quais deve ser executado com base no valor de uma expressão específica. Aqui está uma instância clássica da declaração `switch`:
 
 ```c
 switch (letter_grade) {
@@ -256,17 +256,19 @@ default:
 } 
 ```
 
-Inside the parentheses following the `switch` keyword, we have an expression, whose value must be a character or integer. The computer evaluates this expression and goes down to one of the `case` keywords based on its value. If the value is the character _A_, then the first block is executed (`gpa += 4; credits += 1;`); if it is _B_, then the second block is executed; if it is none of the characters (like an _F_), the block following the `default` keyword is executed.
+Dentro dos parênteses após a palavra chave `switch`, temos uma expressão cujo valor deve ser um caractere ou inteiro. O computador avalia essa expressão e desce para uma das palavras-chave `case` com base em seu valor. Se o valor é o caractere _A_, então o primeiro bloco é executado (`gpa + = 4; créditos += 1;`); se for _B_, então o segundo bloco é executado; se não for nenhum dos caracteres (como um _F_), o bloco que segue a palavra-chave `default` é executado.
 
-The `break` statement at the end of each block is a crucial detail: If the `break` statement is omitted, then the computer continues into the following block. In our above example, if we omitted all `break` statements, then a grade of _A_ would lead the computer to execute not only the _A_ case but also the _B_, _C_, _D_, _W_, and `default` cases. The result would be that `gpa` would increase by 4 + 3 + 2 + 1 = 10, while `credits` would increase by 5. Occasionally you actually want the computer to continue to the next case (called “fall-through”), and so you omit a `break` statement; but in practice you almost always want `break` statement at the end of each case.
+O comando `break` no final de cada bloco é um detalhe crucial: Se o comando `break` for omitida, o computador continua no bloco seguinte. Em nosso exemplo acima, se omitimos todas as declarações `break`, então uma nota de _A_ levaria o computador a executar não apenas o caso _A_, mas também os casos _B_, _C_, _D_, _W_ e `default`. O resultado seria que o `gpa` aumentaria em 4 + 3 + 2 + 1 = 10, enquanto que `credits` aumentaria em 5. Ocasionalmente você realmente deseja que o computador continue no próximo caso (chamado de "fall-through") , e assim você omite uma declaração `break`; mas na prática você quase sempre quer a declaração `break` no final de cada caso.
 
-There is one important exception where fall-through is quite common: Sometimes you want the same code to apply to two different values. For instance, if we wanted the nothing to happen whether the grade is _P_ or _W_, then we could include “`case 'P':`” just before “`case 'W'`”, with no intervening code.
+Há uma exceção importante em que fall-through é bastante comum: às vezes, você deseja que o mesmo código seja aplicado a dois valores diferentes. Por exemplo, se quiséssemos que nada acontecesse se o grau fosse _P_ ou _W_, então poderíamos incluir ` case 'P': ` logo antes de `case 'W'`, sem nenhum código intermediário.
+
 
 ### 2.5. Arrays
 
-Python supports many types that combine the basic atomic types into a group: tuples, lists, strings, dictionaries, sets.
+O Python suporta muitos tipos que combinam os tipos atômicos básicos em um grupo:tuples, lists, strings, dictionaries, sets. 
 
-C's support is much more rudimentary: The _only_ composite type is the array, which is similar to Python's list except that an array in C cannot grow or shrink — its size is fixed at the time of creation. You can declare and access an array as follows.
+O suporte de C é muito mais rudimentar: o tipo composto _só_ é o array, que é semelhante à lista do Python, exceto que um array em C não pode crescer ou encolher - seu tamanho é fixo no momento da criação. Você pode declarar e acessar uma matriz da seguinte maneira.
+
 
 ```c
 double pops[50];
@@ -274,13 +276,13 @@ pops[0] = 897934;
 pops[1] = pops[0] + 11804445; 
 ```
 
-In this example, we create an array containing 50 slots for `double` values. The slots are indexed 0 through 49.
+Neste exemplo, criamos um array contendo 50 slots para valores double. Os slots são indexados de 0 a 49.
 
-C does not have an support for accessing the length of an array once it is created; that is, there is nothing analogous to Python's `len(pops)` or Java's `pops.length`.
+C não tem suporte para acessar o tamanho de um array depois de criado; isto é, não há nada análogo ao `len (pops) do Python ou` pops.length` do Java.
 
-An important point with respect to arrays: What happens if you access an array index outside the array, like accessing `pops[50]` or `pops[-100]`? With Python or Java, this will terminate the program with a friendly message pointing to the line at fault and saying that the program went beyond the array bounds. C is not nearly so friendly. When you access beyond an array bounds, it blindly does it.
+Um ponto importante no que diz respeito aos arrays: O que acontece se você acessar um índice de array fora do array, como acessar `pops [50]` ou `pops [-100]`? Com Python ou Java, isso terminará o programa com uma mensagem amigável apontando para a linha com falha e dizendo que o programa foi além dos limites da matriz. C não é tão amigável. Quando você acessa além dos limites de um array, ele o faz cegamente.
 
-This can lead to peculiar behavior. For example, consider the following program.
+Isso pode levar a um comportamento peculiar. Por exemplo, considere o programa a seguir.
 
 ```c
 int main() {
@@ -295,17 +297,20 @@ int main() {
 } 
 ```
 
-Some systems (including a Linux installation I've encountered) would place `i` in memory just after the `vals` array; thus, when `i` reaches 5 and the computer executes “`vals[i] = 0`”, it in fact resets the memory corresponding to `i` to 0. As a result, the `for` loop has reset, and the program goes through the loop again, and again, repeatedly. The program never reaches the `printf` function call, and the program never terminates.
 
-In more complicated programs, the lack of array-bounds checking can lead to very difficult bugs, where a variable's value changes mysteriously somewhere within hundreds of functions, and you as the programmer must determine where an array index was accessed out of bounds. This is the type of bug that takes a lot of time to uncover and repair.
+Alguns sistemas (incluindo uma distribuição do Linux que eu uso) colocariam `i` na memória logo após a matriz` vals`; assim, quando `i` atinge 5 e o computador executa" `vals [i] = 0`", ele de fato redefine a memória correspondente a `i` para 0. Como resultado, o loop` for` foi zerado, e o programa passa pelo loop novamente e repetidamente. O programa nunca alcança a chamada de função `printf` e o programa nunca termina.
 
-That's why you should consider the error messages provided by Python (or Java) as extraordinarily friendly: Not only does it tell you the cause of a problem, it even tells you exactly which line of the program was at fault. This saves a lot of debugging time.
+> Vamos testar ? :)
 
-Every once in a while, you'll see a C program crash, with a message like “segmentation fault” or bus error.” It won't helpfully include any indication of what part of the program is at fault: all you get is those those two words. Such errors usually mean that the program attempted to access an invalid memory location. This may indicate an attempt to access an invalid array index, but typically the index needs to be pretty far out of bounds for this to occur. (It often instead indicates an attempt to reference an uninitialized pointer or a NULL pointer, which we'll discuss later.)
+Em programas mais complicados, a falta de checagem de limites de array pode levar a bugs muito difíceis, onde o valor de uma variável muda misteriosamente em centenas de funções, e você como programador deve determinar onde um índice de array foi acessado fora dos limites. Este é o tipo de bug que leva muito tempo para descobrir e reparar.
+
+É por isso que você deve considerar as mensagens de erro fornecidas pelo Python (ou Java) como extraordinariamente amigáveis: não apenas informa a causa de um problema, mas também informa exatamente qual linha do programa estava com defeito. Isso economiza muito tempo de depuração.
+
+De vez em quando, você verá uma falha no programa em C, com uma mensagem como "falha de segmentação" ou erro de barramento. "Não será útil incluir qualquer indicação de qual parte do programa é a culpa: tudo que você consegue é aquelas essas duas palavras. Esses erros geralmente significam que o programa tentou acessar um local de memória inválido. Isso pode indicar uma tentativa de acessar um índice de matriz inválido, mas normalmente o índice precisa estar bem fora dos limites para que isso ocorra. (Em geral, isso indica uma tentativa de fazer referência a um ponteiro não inicializado ou a um ponteiro NULL, que discutiremos mais adiante.)
 
 ### 2.6. Comments
 
-In C's original design, all comments begin with a slash followed by an asterisk (“/\*”) and end with an asterisk followed by a slash (“\*/”). The comment can span multiple lines.
+No design original de C, todos os comentários começam com uma barra seguida por um asterisco (“\*”) e terminam com um asterisco seguido por uma barra (“*/”). O comentário pode abranger várias linhas.
 
 ```c
 /* gcd - returns the greatest common
@@ -313,9 +318,9 @@ In C's original design, all comments begin with a slash followed by an asterisk 
 int gcd(int a, int b) { 
 ```
 
-(The asterisk on the second line is ignored by the compiler. Most programmers would include it, though, both because it looks prettier and also because it indicates to a human reader that the comment is being continued from the previous line.)
+(O asterisco na segunda linha é ignorado pelo compilador. A maioria dos programadores o incluiria, porém, porque parece mais bonito e também porque indica a um leitor humano que o comentário está sendo continuado a partir da linha anterior.)
 
-Though this multi-line comment was the only comment originally included with C, C++ introduced a single-line comment that has proven so handy that most of today's C compilers also support it. It starts with two slash characters (“//”) and goes to the end of the line.
+Embora este comentário em várias linhas tenha sido o único comentário originalmente incluído no C, o C ++ introduziu um comentário de linha única que provou ser tão útil que a maioria dos compiladores C atuais também o suportam. Começa com dois caracteres de barra (“//”) e vai para o final da linha.
 
 ```c
 int gcd(int a, int b) {
