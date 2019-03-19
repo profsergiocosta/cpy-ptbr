@@ -1,7 +1,7 @@
 ## 1. Construindo um simples programa
 
 
-Começaremos com vários princípios gerais, usnando para isso programa C completo, mas limitado, até o final da Seção 1.
+Começaremos com vários princípios gerais, usando para isso programa C completo, mas limitado, até o final da Seção 1.
 
 ### 1.1. Compiladores versus interpretadores
 
