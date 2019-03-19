@@ -1,81 +1,99 @@
-3\. Libraries
--------------
-
-Having discussed the internals to functions, we now turn to discussing issues surrounding functions and separating a program into various files.
+## 3. Bibliotecas
 
 
+Tendo discutido as funções internas, agora nos voltamos para discutir questões relacionadas a funções e separar um programa em vários arquivos.
 
-### 3.1. Function prototypes
 
-In C, a function must be declared above the location where you use it. In the C program of [Figure 2](#fig2), we defined the `gcd()` function first, then the `main()` function. This is significant: If we swapped the `gcd()` and `main()` functions, the compiler would complain in `main()` that the `gcd()` function is undeclared. The is because C assumes that a compiler reads a program from the top down: By the time it gets to `main()`, it hasn't been told about a `gcd()` function, and so it believes that no such function exists.
+### 3.1. Protótipos de função
 
-This raises a problem, especially in larger programs that span several files, where functions in one file will need to call functions in another. To get around this, C provides the notion of a **function prototype**, where we write the function header but omit the body definition.
+Em C, uma função deve ser declarada acima do local onde você a usa. No programa C de [Figura 2], definimos a função `gcd ()` primeiro, depois a função `main ()`. Isto é significativo: Se nós trocamos as funções `gcd ()` e `main ()`, o compilador iria reclamar em `main() `que a função `gcd ()` não foi declarada. Isso porque C assume que um compilador lê um programa de cima para baixo: No momento em que chega ao `main ()`, ele não foi informado sobre uma função `gcd ()`, e por isso ele acredita que a função não exista.
 
-As an example, say we want to break our C program into two files: The first file, math.c, will contain the `gcd()` function, and the second file, main.c, will contain the `main()` function. The problem with this is that, in compiling main.c, the compiler won't know about the `gcd()` function that it is attempting to call.
+Isso gera um problema, especialmente em programas maiores que abrangem vários arquivos, em que as funções de um arquivo precisarão chamar funções em outro. Para contornar isso, C fornece a noção de um **protótipo de função**, onde escrevemos o cabeçalho da função mas omitimos a definição do corpo.
 
-A solution is to include a function prototype in main.c.
+Por exemplo, digamos que queremos quebrar nosso programa C em dois arquivos: O primeiro arquivo, math.c, conterá a função `gcd ()` e o segundo arquivo, main.c, conterá o `main () `função. O problema com isso é que, na compilação main.c, o compilador não saberá sobre a função `gcd ()` que está tentando chamar.
 
-> `**int** gcd(**int** a, **int** b);  
->   
-> **int** main() {  
->     printf("GCD: %d\n",  
->         gcd(24, 40));  
->     **return** 0;  
-> }`
+Uma solução é incluir um protótipo de função em main.c.
 
-The “`**int** gcd`…” line is the function prototype. You can see that it begins the same as a function definition begins, but we simply put a semicolon where the body of the function would normally be. By doing this, we are declaring that the function will eventually be defined, but we are not defining it yet. The compiler accepts this and obediently compiles the program with no complaints.
 
-### 3.2. Header files
+```c
+int gcd(int a, int b);
 
-Larger programs spanning several files frequently contain many functions that are used many times in many different files. It would be painful to repeat every function prototype in every file that happens to use the function. So we instead create a file — called a **header file** — that contains each prototype written just once (and possibly some additional shared information), and then we can refer to this header file in each source file that wants the prototypes. The file of prototypes is called a header file, since it contains the “heads” of several functions. Conventionally, header files use the .h prefix, rather than the .c prefix used for C source files.
+int main() {
+    printf("GCD: %d\n", gcd(24, 40));
+    return 0;
+}
 
-For example, we might put the prototype for our `gcd()` function into a header file called math.h.
+```
 
-> `**int** gcd(**int** a, **int** b);`
+A linha `int gcd ...` é o protótipo da função. Você pode ver que começa da mesma forma que uma definição de função, mas nós simplesmente colocamos um ponto-e-vírgula onde o corpo da função normalmente seria. Ao fazer isso, estamos declarando que a função será eventualmente definida, mas ainda não a definimos. O compilador aceita isso e obedientemente compila o programa sem reclamações.
 
-We can use a special type of line starting with `**#**include` to incorporate this header file at the top of main.c.
+### 3.2. Arquivos de cabeçalho (Header files)
 
-> `**#**include <stdio.h>  
-> **#**include "math.h"  
->   
-> **int** main() {  
->     printf("GCD: %d\n",  
->         gcd(24, 40));  
->     **return** 0;  
-> }`
+Programas maiores que abrangem vários arquivos freqüentemente contêm muitas funções que são usadas muitas vezes em muitos arquivos diferentes. Seria doloroso repetir cada protótipo de função em todos os arquivos que usam a função. Então, criamos um arquivo - chamado de **arquivo de cabeçalho** - que contém cada protótipo escrito apenas uma vez (e possivelmente algumas informações compartilhadas adicionais), e então podemos nos referir a esse arquivo de cabeçalho em cada arquivo de origem que deseja os protótipos. O arquivo de protótipos é chamado de arquivo de cabeçalho, pois contém as “heads” ou "cabeças" de várias funções. Convencionalmente, os arquivos de cabeçalho usam o prefixo `.h`, em vez do prefixo `.c` usado para os arquivos fonte C.
 
-This particular example isn't very convincing, but imagine a library consisting of dozens of functions, which is used in dozens of files: Suddenly the time savings of having just a single prototype for each function in a header file begins making sense.
 
-The `**#**include` line is an example of a directive for C's **preprocessor**, through which the C compiler sends each program before actually compiling it. A program can contain commands (**directives**) telling the preprocessor to manipulate the program text that the compiler actually processes. The `**#**include` directive tells the preprocessor to replace the `**#**include` line with the contents of the file specified.
+Por exemplo, podemos colocar o protótipo da nossa função `gcd ()` em um arquivo de cabeçalho chamado math.h.
 
-You'll notice that we've placed stdio.h in angle brackets, while math.h is in double quotation marks. The angle brackets are for standard header files — files more or less built into the C system. The quotation marks are for custom-written header files that can be found in the same directory as the source files.
+```c
+int gcd(int a, int b);
+```
 
-### 3.3. Constants
+Podemos usar um tipo especial de linha começando com `#include` para incorporar este arquivo de cabeçalho no topo do main.c.
 
-Another particularly useful preprocessor directive is the `**#**define` directive. It tells the preprocessor to substitute all future occurrences of some word with something else.
+```c
+#include <stdio.h>
+#include "math.h"
 
-> `**#**define PI 3.14159`
+int main() {
+    printf("GCD: %d\n",
+        gcd(24, 40));
+    return 0;
+} 
+```
 
-In this fragment, we've told the preprocessor that, for the rest of the program, it should replace every occurrence of “`PI`” with “`3.14159`” instead. Suppose that later in the program is the following line:
+Este exemplo em particular não é muito convincente, mas imagine uma biblioteca que consiste em dezenas de funções, que são usadas em dezenas de arquivos: De repente, a economia de tempo de ter apenas um único protótipo para cada função em um arquivo de cabeçalho começa a fazer sentido.
 
-> `printf("area: %f\n", PI * r * r);`
+A linha `#include` é um exemplo de uma diretiva para o pré-processador do C, através da qual o compilador C envia cada programa antes de compilá-lo. Um programa pode conter comandos (**diretivas**) informando ao pré-processador para manipular o texto do programa que o compilador realmente processa. A diretiva `#include` diz ao pré-processador para substituir a linha`#include` pelo conteúdo do arquivo especificado.
 
-Seeing this, the preprocessor would translate it into the following text for the C compiler to process:
+Você notará que colocamos `stdio.h` entre colchetes, enquanto `math.h` está entre aspas duplas. Os colchetes angulares são para arquivos de cabeçalho padrão - arquivos mais ou menos incorporados ao sistema C. As aspas são para arquivos de cabeçalho personalizados que podem ser encontrados no mesmo diretório dos arquivos fonte.
 
-> `printf("area: %f\n", 3.14159 * r * r);`
 
-This replacement happens behind the scenes, so that the programmer won't see the replacement.
+### 3.3. Constantes
 
-The `**#**define` directive is not restricted to defining constants like this, though. Because it uses textual replacement only, the directive can be used (and abused) in other ways. For example, one might include the following.
+Outra diretiva de pré-processador particularmente útil é a diretiva `#define`. Ela diz ao pré-processador para substituir todas as ocorrências futuras de alguma palavra por outra.
 
-> `**#**define forever **while**(1)`
+```c
+#define PI 3.14159
+```
 
-Subsequently, you could use `forever` as if it were a loop construct, and the preprocessor would replace it with “`**while**(1)`.”
+Neste fragmento, dissemos ao pré-processador que, para o resto do programa, ele deveria substituir cada ocorrência de "PI" por "3.14159". Suponha que mais tarde no programa tenha a seguinte linha:
 
-> `forever {  
->     printf("hello world\n");  
-> }`
 
-Expert C programmers consider this very poor style, since it quickly leads to unreadable programs.
+```c
+printf("area: %f\n", PI * r * r);
+```
+Vendo isso, o pré-processador iria traduzi-lo no seguinte texto para o compilador C processar:
 
-These are the basics of writing C programs, giving you enough to be able to write reasonably useful programs. But to be a proficient programmer in C, you'd need to know about pointers — a topic that we'll defer to another time.
+```c
+printf("area: %f\n", 3.14159 * r * r);
+```
+> vamos testar ? :)
+
+Essa substituição acontece nos bastidores, para que o programador não veja a substituição.
+
+A diretiva `# define` não está restrita a definir constantes como essa, no entanto. Por usar apenas substituição textual, a diretiva pode ser usada (e abusada) de outras maneiras. Por exemplo, pode-se incluir o seguinte.
+
+```c
+#define forever while(1)
+```
+Posteriormente, você poderia usar `forever` como se fosse uma construção de loop, e o pré-processador a substituiria por“ `while(1)` ”.
+
+```c
+forever {  
+     printf("hello world\n");  
+}
+```
+Os programadores especialistas em C consideram esse estilo muito ruim, já que ele leva rapidamente a programas ilegíveis.
+
+Estas são as noções básicas de escrever programas em C, dando-lhe o suficiente para poder escrever programas razoavelmente úteis. Mas, para ser um programador proficiente em C, você precisaria saber sobre ponteiros - um tópico que adiaremos em outro momento.
+
