@@ -32,7 +32,7 @@ Um  operador  é algo que podemos usar em expressões aritméticas, como um sina
 
 Algumas distinções importantes: 
 
-* C não possui um operador de exponenciação como o operador `` do Python. Para exponenciação em C, você deverá usar uma função de biblioteca denominada `pow ()`. Por exemplo, `pow (1.1, 2.0)` calcula 1.1². 
+* C não possui um operador de exponenciação como o operador `**` do Python. Para exponenciação em C, você deverá usar uma função de biblioteca denominada `pow ()`. Por exemplo, `pow (1.1, 2.0)` calcula 1.1². 
 
 * C usa símbolos em vez de palavras para as operações booleanas AND (`&&`), OR (`||`) e NOT (`!`). 
   
